@@ -14,6 +14,10 @@ session_start();
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 
   <style>
+
+    .body{
+        background-color: #E5F6DF;
+    }
     /* Make whole document located at center*/
    .centered {
     position: absolute;
@@ -32,7 +36,7 @@ session_start();
 
     /*Background of the form*/
     .content {
-    background: lightpink;
+    background:#E5F6DF;
     padding: 0 18px;
 
     }
@@ -40,6 +44,14 @@ session_start();
     .btn{
     cursor: pointer;
     width:500px;
+    color: #dfdfd4 ;
+    background-color:#8d7a54;  
+   
+    }
+
+    .btn:hover{
+     background-color: #dfdfd4 ;
+    color:#8d7a54;
     }
 
     a:link  {
@@ -54,32 +66,48 @@ h2{
    
 }
 
-</style>
+/*Image */
+.image{
+    width:300px;
+     height:300px;
+}
 
+</style>
+<?php
+include_once("nav.php");?>
 </head>
-<body >
+<body class="body">
+
+
 
 <div class="centered">
 <form class=content action="<?php echo $_SERVER [ 'PHP_SELF' ]?>" method="post" enctype="multipart/form-data">
 <br>
 <br>
-<h2><b>Forum Discussion Room</b><h2>
+<h2 style="color:#543b23"><b>Forum Discussion Room</b><h2>
 <br>
 <br>
 
 <!--Forum Room Topic-->
 <div class=buttonCentered>
-<button type="submit" class="btn" name="ForumRoom1" style="font-family:'Times New Roman', Times, serif;font-size:30px;border-radius:100px;background-color: #007ab3 ;color:whitesmoke">Topic 1</button>
+<button type="submit" class="btn" name="ForumRoom1" style="font-family:'Times New Roman', Times, serif;font-size:30px;border-radius:100px;">JAPANESE</button>
 <br><br>
-<button type="submit" class="btn" name="ForumRoom2" style="font-family:'Times New Roman', Times, serif;font-size:30px;border-radius:100px;background-color: #007ab3 ;color:whitesmoke">Topic 2</button>
+<button type="submit" class="btn" name="ForumRoom2" style="font-family:'Times New Roman', Times, serif;font-size:30px;border-radius:100px;">CHINESE</button>
 <br><br>
-<button type="submit" class="btn" name="ForumRoom3" style="font-family:'Times New Roman', Times, serif;font-size:30px;border-radius:100px;background-color: #007ab3 ;color:whitesmoke">Topic 3</button>
+<button type="submit" class="btn" name="ForumRoom3" style="font-family:'Times New Roman', Times, serif;font-size:30px;border-radius:100px;">KOREAN</button>
 <br><br>
-
 </div>
 <br>
+<img class="image" src="image/Forum.png" >
 </form>
+
+
 </div>
+
+
+
+    
+
 
 </body>
 </html>

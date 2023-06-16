@@ -58,6 +58,10 @@ $conn->close();
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 
   <style>
+      .body{
+        background-color: #F6EDDF;
+    }
+
     /* Make whole document located at center*/
    .centered {
     position: absolute;
@@ -72,7 +76,10 @@ $conn->close();
     border-radius: 15px;
     border:1px;
     height:100px;
-    background-color: #e6e6e6;
+    background-color: #f2f2f2;
+    }
+    .inputFieldLongText:focus{
+      background-color:#F6EDDF;
     }
 
     /* Button Centered*/
@@ -89,7 +96,7 @@ $conn->close();
 
     /*Background of the form*/
     .content {
-    background: #bfbfbf;
+      background-color: #eedec3;
     padding: 0 18px;
 
     }
@@ -105,19 +112,25 @@ $conn->close();
     text-decoration:none;
 }
 
+/*Image */
+.image{
+    width:400px;
+     height:500px;
+}
 
 </style>
 
 </head>
-<body >
+<body class=body >
 
 <div class="centered">
 
 <!--Create New Post-->
 <br>
-
+<br><br><br>
 <div class="content">
   <br>
+  
   <form id="form" action="<?php echo $_SERVER [ 'PHP_SELF' ]?>" method="post" enctype="multipart/form-data">
 
     <header>
@@ -161,6 +174,6 @@ if(isset($_POST["cancel"])){
 
 
 </div>
-
+<img class="image" src="image/ForumAddPost.png" >
 </body>
 </html>
