@@ -35,8 +35,10 @@
     // Fetch lessons from the database
     $servername = "localhost";
     $username = "root";
-    $password = "development1234#";
-    $dbname = "language_learning";
+    // $password = "development1234#";
+    // $dbname = "language_learning";
+    $password = "";
+    $db_name = "language_db";
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
