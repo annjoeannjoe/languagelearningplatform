@@ -162,6 +162,8 @@ $room_ID=$_SESSION['forum_room_id'];
     <br>
     <br>
     <br>
+    <table style="width:1000px">
+    </table>
   <?php 
           $conn = mysqli_connect('localhost', 'Student', '1234','osp group project');
           $query = "SELECT * FROM forum WHERE Forum_Room_Id='$room_ID' ORDER BY Forum_Date DESC;";
