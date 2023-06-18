@@ -37,6 +37,14 @@ include 'nav.php';
             margin-top: 20px;
             margin-bottom: 20px;
         }
+
+        .container-japan{
+            margin-top: 20px;
+            padding: 30px;
+            background-color: #fdfff2;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
     </style>
 </head>
 <body>
@@ -56,6 +64,7 @@ include 'nav.php';
 
     <h5><center>Hiragana</center></h5>
 
+    <div class="container-japan">
     <div class="row justify-content-center">
         <?php 
         // Connect to the database
@@ -97,6 +106,7 @@ include 'nav.php';
         // Close the database connection
         $conn->close();
         ?>
+    </div>
     </div>
 
     <div class="row justify-content-end">
