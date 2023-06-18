@@ -149,7 +149,7 @@ mysqli_close($conn);
 ?>
 <div class="row justify-content-end">
         <div class="col-12 text-right">
-            <a href="admin_japanese.php" class="btn btn-primary">Close</a>
+            <a href="admin_japanese.php" class="btn btn-primary">Finish</a>
         </div>
     </div>
 </body>
