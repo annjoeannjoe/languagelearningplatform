@@ -119,8 +119,8 @@
                 <ul>
                   <li><a href="japanese_lesson1.php">Lesson 1: Hiragana and Katagana</a></li>
                   <li><a href="japanese_lesson2.php">Lesson 2: Japanese Greetings</a></li>
-                  <li><a href="japanese_lesson3.php">Lesson 3: Japanese Nouns</a></li>
-                  <li><a href="japanese_lesson4.php">Lesson 4: Japanese Nouns (Part 2)</a></li>
+                  <li><a href="#">Lesson 3: Japanese Nouns</a></li>
+                  <li><a href="#">Lesson 4: Japanese Nouns (Part 2)</a></li>
                 </ul>
               </div>
             </div>
@@ -166,6 +166,7 @@
       </div>
     </div>
   </div>
+  <br>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
