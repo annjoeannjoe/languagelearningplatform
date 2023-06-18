@@ -13,8 +13,11 @@ if ($conn->connect_error) {
 }
 
 if (!isset($_GET['question'])) {
-
-    $language = 'Chinese';
+    if (isset($_GET['language'])){
+        $language = $_GET['language'];
+    }
+    
+    // $language = 'Chinese';
     $query = "SELECT * FROM quiz WHERE language = '$language' ORDER BY RAND() LIMIT 5";
     $result = $conn->query($query);
     $questions = $result->fetch_all(MYSQLI_ASSOC);
