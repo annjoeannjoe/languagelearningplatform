@@ -51,19 +51,18 @@
     $result = $conn->query($sql);
 
     $lessons = array(
-      array('id' => 1, 'lesson_title' => 'Lesson 1: Pronunciation Basics', 'edit_file' => 'add_chinese_lesson1.php'),
-      array('id' => 2, 'lesson_title' => 'Lesson 2: Hello in Chinese', 'edit_file' => 'add_chinese_lesson2.php')
+      array('id' => 1, 'lesson_title' => 'Lesson 1: Pronunication Basics', 'details_file' => 'admin_chinese_lesson1.php', 'edit_file' => 'add_chinese_lesson1.php'),
+      array('id' => 2, 'lesson_title' => 'Lesson 2: Hello in Chinese', 'details_file' => 'admin_chinese_lesson2.php', 'edit_file' => 'add_chinese_lesson2.php')
     );
 
     // Fetch the lessons from the database and merge with hardcoded data
     if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            if($row['language'] === 'Chinese'){
-                $lessons[] = $row;
-            }
+      while ($row = $result->fetch_assoc()) {
+        if ($row['language'] === 'Chinese') {
+          $lessons[] = $row;
         }
+      }
     }
-      
 
     // Close the database connection
     $conn->close();
@@ -153,9 +152,13 @@
                     echo '<tr>';
                     echo '<td>' . $lesson['lesson_title'] . '</td>';
                     echo '<td>';
-                    echo '<a href="admin_chinese_lesson1.php" class="btn details-button"><i class="fas fa-eye"></i> Details</a>';
 
-                   
+                    if (isset($lesson['details_file'])) {
+                      echo '<a href="' . $lesson['details_file'] . '" class="btn details-button"><i class="fas fa-eye"></i> Details</a>';
+                    } else {
+                      echo '<a href="#" class="btn details-button" disabled><i class="fas fa-eye"></i> Details</a>';
+                    }
+
                     if (isset($lesson['edit_file'])) {
                       echo '<a href="' . $lesson['edit_file'] . '" class="btn btn-primary action-buttons"><i class="fas fa-edit"></i> Edit</a>';
                     } else {
@@ -164,9 +167,9 @@
 
                     // Check if the row has a lesson ID
                     if (isset($lesson['addLesson_id'])) {
-                      echo '<a href="#" class="btn btn-danger action-buttons delete-lesson-btn" data-toggle="modal" data-target="#deleteConfirmationModal" data-addlesson-id="' . $lesson['addLesson_id'] . '"><i class="fas fa-trash"></i> Delete</a>';
+                      echo '<button class="btn btn-danger action-buttons delete-lesson-btn" data-toggle="modal" data-target="#deleteConfirmationModal" data-addlesson-id="' . $lesson['addLesson_id'] . '"><i class="fas fa-trash"></i> Delete</button>';
                     } else {
-                      echo '<a href="#" class="btn btn-danger action-buttons" disabled><i class="fas fa-trash"></i> Delete</a>';
+                      echo '<button class="btn btn-danger action-buttons" ><i class="fas fa-trash"></i> Delete</button>';
                     }
 
                     echo '</td>';
@@ -196,7 +199,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-danger" id="deleteLessonBtn">Delete</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
         </div>
       </div>
     </div>
@@ -206,31 +209,25 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
   <!-- Include your custom JavaScript code -->
   <script>
-    $(document).ready(function() {
-      // Store the addLessonId in a variable
-      var addLessonIdToDelete;
+    // Add event listener to the delete lesson button
+    $(document).on('click', '.delete-lesson-btn', function() {
+      // Get the addLesson_id of the lesson to be deleted
+      var addLessonId = $(this).data('addlesson-id');
 
-      // When the delete button is clicked, get the addLessonId and store it in the variable
-      $('.delete-lesson-btn').click(function() {
-        addLessonIdToDelete = $(this).data('addlesson-id');
-      });
+      // Update the confirm delete button's data-addlesson-id attribute
+      $('#confirmDeleteBtn').attr('data-addlesson-id', addLessonId);
+    });
 
-      // When the delete button in the modal is clicked, send an AJAX request to delete the lesson
-      $('#deleteLessonBtn').click(function() {
-        // Send the AJAX request to the PHP script
-        $.post('admin_japanese.php', {
-          addLessonId: addLessonIdToDelete
-        }, function(data) {
-          // Handle the response from the PHP script
-          console.log(data);
-          // Remove the row from the table
-          $('[data-addlesson-id="' + addLessonIdToDelete + '"]').closest('tr').remove();
-          // Close the modal
-          $('#deleteConfirmationModal').modal('hide');
-        });
-      });
+    // Add event listener to the confirm delete button in the modal
+    $(document).on('click', '#confirmDeleteBtn', function() {
+      // Get the addLesson_id from the button's data-addlesson-id attribute
+      var addLessonId = $(this).data('addlesson-id');
+
+      // Redirect to the delete_lesson.php file passing the addLesson_id as a parameter
+      window.location.href = 'delete_lesson.php?addLessonId=' + addLessonId;
     });
   </script>
 </body>
