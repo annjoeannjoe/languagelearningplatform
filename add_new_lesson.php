@@ -29,13 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     switch($language){
         case 'Chinese':
-            header("Location: ;lesson_materials.php");
+            header("Location: admin_chinese.php");
             break;
         case 'Japanese':
             header("Location: admin_japanese.php");
             break;
         case 'Korean':
-            header("Location: lesson_materials.php");
+            header("Location: admin_korean.php");
             break;
         default:
         header("Location: home.php");
