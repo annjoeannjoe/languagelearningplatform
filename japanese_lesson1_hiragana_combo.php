@@ -10,7 +10,7 @@ include 'nav.php';
             margin-bottom: 20px;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
             transition: 0.3s;
-            background-color: #DEEBFF; /* Lighter card background color */
+            background-color: #F0EDFF; /* Lighter card background color */
         }
 
         .card:hover {
@@ -37,6 +37,25 @@ include 'nav.php';
             margin-top: 20px;
             margin-bottom: 20px;
         }
+
+        .container-japan{
+            margin-top: 20px;
+            padding: 30px;
+            background-color: #fdfff2;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .back-btn{
+            margin-bottom: 20px;
+            float: left;
+            background-color: #888888;
+            border-color: #888888;
+        }
+
+        .back-btn:hover{
+            background-color: #555555;
+            
+        }
     </style>
 </head>
 <body>
@@ -58,6 +77,7 @@ include 'nav.php';
     <h6><i><center>Add small characters to make new syllabus</center></i></h6>
     <br>
 
+    <div class="container-japan">
     <div class="row justify-content-center">
         <?php 
         // Connect to the database
@@ -103,11 +123,14 @@ include 'nav.php';
         <!-- Add an empty column for alignment -->
         <div class="col-md-4"></div>
     </div>
+</div>
 
     <div class="row justify-content-center">
         <div class="col-12 text-right">
-            <a href="japanese_lesson1_combo.php" class="btn btn-primary">Next</a>
+            <a href="japanese_lesson1_hiragana_dakuon.php" class="btn btn-primary back-btn">Back</a>
+            <a href="japanese.php" class="btn btn-primary">Finish</a>
         </div>
     </div>
 </div>
 </body>
+
