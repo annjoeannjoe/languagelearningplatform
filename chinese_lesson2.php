@@ -101,7 +101,7 @@
     <h5><b>Dialogue 1</b></h5>
     <h6><i>Used with friends or a less formal greeting (using Nǐ)</i></h6>
    </div>
-   <br>
+
 
    <div class="container">
     
@@ -118,8 +118,8 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Query the database for Hiragana words
-        $sql = "SELECT vocab, vocab_pronunciation, vocab_meaning FROM chinese_lesson WHERE chinese_id=12";
+        // Query the database 
+        $sql = "SELECT vocab, vocab_pronunciation, vocab_meaning FROM chinese_lesson WHERE chinese_id=1";
         $result = $conn->query($sql);
 
              // Check if records exist
@@ -149,7 +149,7 @@
     <h5><b>Dialogue 2</b></h5>
     <h6><i>The more correct greeting when respect or politeness is required (Using Nín)</i></h6>
    </div>
-   <br>
+
 
    <div class="container">
     
@@ -167,7 +167,7 @@
         }
 
         // Query the database 
-        $sql = "SELECT vocab, vocab_pronunciation, vocab_meaning FROM chinese_lesson WHERE chinese_id IN (13,14)";
+        $sql = "SELECT vocab, vocab_pronunciation, vocab_meaning FROM chinese_lesson WHERE chinese_id IN (2,3)";
         $result = $conn->query($sql);
 
              // Check if records exist
@@ -197,7 +197,7 @@
       <br>
     <h5><b>Vocabulary</b></h5>
    </div>
-   <br>
+
 
    <div class="container">
    <table>
@@ -220,7 +220,7 @@
         }
 
         // Query the database 
-        $sql = "SELECT vocab, vocab_pronunciation, vocab_meaning FROM chinese_lesson WHERE chinese_id>=16";
+        $sql = "SELECT vocab, vocab_pronunciation, vocab_meaning FROM chinese_lesson WHERE chinese_id>=4";
         $result = $conn->query($sql);
 
         // Check if records exist
