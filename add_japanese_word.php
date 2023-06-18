@@ -72,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="form-group">
         <label for="category"><b>Category:</b></label>
         <select class="form-control" id="category" name="category">
+          <option value="" disabled selected>Select Category</option>
           <option value="Hiragana">Hiragana</option>
           <option value="Dakuon">Hiragana-Dakuon</option>
           <option value="Combo">Hiragana-Combo</option>
