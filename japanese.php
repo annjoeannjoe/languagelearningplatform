@@ -108,7 +108,7 @@
               <li><a href="lesson_materials.php"><i class="fas fa-book"></i> Materials</a></li>
               <li><a href="#grammar-exercises"><i class="fas fa-file-alt"></i> Exercises</a></li>
               <li><a href="#pronunciation-practice"><i class="fas fa-volume-up"></i> Practice</a></li>
-              <li><a href="#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+              <li><a href="#quiz" onclick="goToQuestionPage('Japanese')"><i class="fas fa-question-circle"></i> Quizzes</a></li>
             </ul>
           </div>
           <div class="content">
@@ -177,6 +177,11 @@
         $(this).addClass('active');
       });
     });
+
+    function goToQuestionPage(language) {
+      var questionPageUrl = 'quiz.php?language=' + language;
+      window.location.href = questionPageUrl;
+    }
   </script>
 </body>
 </html>

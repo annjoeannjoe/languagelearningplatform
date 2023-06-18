@@ -16,6 +16,9 @@ if (!isset($_GET['question'])) {
     if (isset($_GET['language'])){
         $language = $_GET['language'];
     }
+    else {
+        $language = "Japanese";
+    }
     
     // $language = 'Chinese';
     $query = "SELECT * FROM quiz WHERE language = '$language' ORDER BY RAND() LIMIT 5";
@@ -99,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html>
 <style>
     .btn-outline-success {
-        width: 150px;
+        min-width: 150px;
     }
 </style>
 
