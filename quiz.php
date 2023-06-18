@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $currentQuestion = $_POST['currentQuestion'] + 1;
         echo "Check curr" . $currentQuestion;
-        header("Location: question.php?question=$currentQuestion");
+        header("Location: quiz.php?question=$currentQuestion");
     } else {
         $mark = $_SESSION['mark'];
         header("Location: marks.php?mark=$mark");
