@@ -101,7 +101,7 @@
     <h5><b>Dialogue 1</b></h5>
     <h6><i>Used with friends or a less formal greeting (using Nǐ)</i></h6>
    </div>
-   <br>
+
 
    <div class="container">
     
@@ -149,7 +149,7 @@
     <h5><b>Dialogue 2</b></h5>
     <h6><i>The more correct greeting when respect or politeness is required (Using Nín)</i></h6>
    </div>
-   <br>
+
 
    <div class="container">
     
@@ -197,7 +197,7 @@
       <br>
     <h5><b>Vocabulary</b></h5>
    </div>
-   <br>
+
 
    <div class="container">
    <table>
