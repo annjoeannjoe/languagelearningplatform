@@ -126,8 +126,8 @@ include 'nav.php';
 
     <div class="row justify-content-center">
         <div class="col-12 text-right">
-            <a href="japanese_lesson1.php" class="btn btn-primary back-btn">Back</a>
-            <a href="japanese_lesson1_hiragana_combo.php" class="btn btn-primary">Next</a>
+            <a href="admin_japanese_lesson1.php" class="btn btn-primary back-btn">Back</a>
+            <a href="admin_japanese_lesson1_hiragana_combo.php" class="btn btn-primary">Next</a>
         </div>
     </div>
 </div>
