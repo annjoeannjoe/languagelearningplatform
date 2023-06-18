@@ -1,3 +1,4 @@
+-- Create quiz question table 17/06/2023
 CREATE TABLE language_db.quiz (
   id INT AUTO_INCREMENT PRIMARY KEY,
   question VARCHAR(255) NOT NULL,
@@ -39,3 +40,10 @@ INSERT INTO `quiz` (`id`, `question`, `language`, `choice1`, `choice2`, `choice3
 INSERT INTO `quiz` (`id`, `question`, `language`, `choice1`, `choice2`, `choice3`, `choice4`, `answer`) VALUES (32, 'こんにちは', 'Japanese', 'Good afternoon', 'Good morning', 'Good night', "Let\'s eat", 1);
 INSERT INTO `quiz` (`id`, `question`, `language`, `choice1`, `choice2`, `choice3`, `choice4`, `answer`) VALUES (33, 'やま____ はあります。\r\nYama ____ arimasu. ', 'Japanese', 'ni に', 'ga が', 'o を', 'wa は', 2);
 INSERT INTO `quiz` (`id`, `question`, `language`, `choice1`, `choice2`, `choice3`, `choice4`, `answer`) VALUES (34, 'がっこうにともだちが ____。\r\nGakko ni tomodachi ga ____. ', 'Japanese', 'imasu います', 'arimasu あります', 'wa は', 'no の', 1);
+
+-- Create quiz score table 18/06/2023
+CREATE TABLE language_db.quiz_score (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user VARCHAR(255) NOT NULL,
+  score INT NOT NULL
+);
