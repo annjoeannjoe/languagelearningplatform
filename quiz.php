@@ -40,16 +40,52 @@ $answer = $row['answer'];
 $questionId = $row['id'];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $user = "Jane";
     if ($_POST['choice'] == $_POST['answer']) {
         $_SESSION['mark'] += 1;
     }
     if ($_POST['currentQuestion'] < 4) {
 
         $currentQuestion = $_POST['currentQuestion'] + 1;
-        echo "Check curr" . $currentQuestion;
+        // echo "Check curr" . $currentQuestion;
         header("Location: quiz.php?question=$currentQuestion");
     } else {
         $mark = $_SESSION['mark'];
+        $get_score_sql = "SELECT * FROM quiz_score WHERE user = '$user'";
+        $result = $conn->query($get_score_sql);
+
+        // Check if the score exists in the database
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $old_score = $row["score"];
+            $score = $old_score + $mark;
+            // echo "Score: ".$score; 
+            $stmt = $conn->prepare("UPDATE quiz_score SET score = ? WHERE user = ?");
+            // // $conn->query($update_sql);
+            // if ($conn->query($update_sql) === TRUE) {
+            //     echo "Record updated successfully";
+            // } else {
+            //     echo "Error updating record: " . $conn->error;
+            // }
+            // $stmt = $conn->prepare($update_sql);
+            $stmt->bind_param("is", $score, $user);
+            $stmt->execute();
+            // Check if the update was successful
+            // if ($stmt->affected_rows > 0) {
+            //     echo "Data updated successfully";
+            // } else {
+            //     echo "Error updating data";
+            // }
+
+        } else {
+            echo "No score found for the user.";
+            $insert_sql = "INSERT INTO quiz_score (user, score) VALUES (?, ?)";
+            $stmt = $conn->prepare($insert_sql);
+            $stmt->bind_param("si", $user, $mark);
+            $stmt->execute();
+            $stmt->close();
+        }
+
         header("Location: marks.php?mark=$mark");
         session_destroy();
     }
@@ -59,10 +95,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <html>
 <style>
-    .btn-outline-success{
+    .btn-outline-success {
         width: 150px;
     }
 </style>
+
 <head>
     <title>Quiz</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -74,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
-    
+
     <div class="container-fluid">
         <br>
         <h1> Quiz </h1>
@@ -93,26 +130,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <?php echo $question; ?>
                         </p>
                     </div>
-                    
+
                 </div>
             </div>
             <br>
-        
+
             <br>
             <div class="d-flex justify-content-around">
-                        <button type="submit" class="btn btn-outline-success" name="choice" value="1">
-                            <?php echo $choice1; ?>
-                        </button> &nbsp;
-                        <button type="submit" class="btn btn-outline-success" name="choice" value="2">
-                            <?php echo $choice2; ?>
-                        </button> &nbsp;
-                        <button type="submit" class="btn btn-outline-success" name="choice" value="3">
-                            <?php echo $choice3; ?>
-                        </button> &nbsp;
-                        <button type="submit" class="btn btn-outline-success" name="choice" value="4">
-                            <?php echo $choice4; ?>
-                        </button><br>
-                    </div>
+                <button type="submit" class="btn btn-outline-success" name="choice" value="1">
+                    <?php echo $choice1; ?>
+                </button> &nbsp;
+                <button type="submit" class="btn btn-outline-success" name="choice" value="2">
+                    <?php echo $choice2; ?>
+                </button> &nbsp;
+                <button type="submit" class="btn btn-outline-success" name="choice" value="3">
+                    <?php echo $choice3; ?>
+                </button> &nbsp;
+                <button type="submit" class="btn btn-outline-success" name="choice" value="4">
+                    <?php echo $choice4; ?>
+                </button><br>
+            </div>
             <input type="hidden" name="questionId" value="<?php echo $questionId; ?>">
             <input type="hidden" name="currentQuestion" value="<?php echo $currentQuestion ?>">
             <input type="hidden" name="answer" value="<?php echo $answer; ?>">
