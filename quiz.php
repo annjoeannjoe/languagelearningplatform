@@ -28,7 +28,7 @@ if (!isset($_GET['question'])) {
     $currentQuestion = 0;
     // echo "Current: " . $currentQuestion;
 } else {
-    echo "Check Get: Have Get data";
+    // echo "Check Get: Have Get data";
 
     $currentQuestion = $_GET['question'];
     $row = $_SESSION['questions'][$currentQuestion];
