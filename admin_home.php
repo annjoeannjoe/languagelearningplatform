@@ -52,6 +52,36 @@
         .container h3{
             margin-top: 20px;
         }
+
+        /*aj add*/
+        .admin-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .admin-actions-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .add-language-btn {
+            margin-top: 0;
+            padding: 8px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-language-btn:hover {
+            color: white;
+            background-color: #0069d9;
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -59,11 +89,11 @@
     <?php
     session_start();
 
-    // Check if the user is logged in and is an admin
+    //Check if the user is logged in and is an admin
     if (!isset($_SESSION['user_id']) || $_SESSION['is_admin'] !== 1) {
         // Redirect the user to the login page or show an error message
-        header("Location: login.php");
-        exit;
+       header("Location: login.php");
+       exit;
     }
 
     include 'nav.php'; // Include the navigation bar for admin
@@ -86,29 +116,44 @@
     if ($stmt->rowCount() > 0) {
         $adminName = $stmt->fetchColumn();
     } else {
-        // Default name if the admin is not found
-        $adminName = "Admin User";
+         //Default name if the admin is not found
+       $adminName = "Admin User";
     }
 
     ?>
 
-    <div class="container">
-        <h3>Welcome, <?php echo $adminName; ?> </h3>
-        <div class="card">
-            <h4>Admin Actions</h4>
-            <ul class="admin-actions-list">
-                <ul>
-            <li>Manage Learning Materials</li>
-            <ul>
-            <li><a href="Japanese.php">Japanese</a></li>
-                <li><a href="Chinese.php">Chinese</a></li>
-                <li><a href="Korean.php">Korean</a></li>
-                </ul>
-                <li><a href="manage_forum.php">Manage Forum</a></li>
-            </ul>
-            </ul>
+<div class="container">
+    <h3>Welcome, <?php //echo $adminName; ?> </h3>
+    <div class="card">
+        <h4>Admin Actions</h4>
+        <div class="admin-actions">
+            <div class="admin-actions-column">
+                <div class="admin-actions-list">
+                    <ul>
+                    <li>
+                        <span>Manage Learning Materials</span>
+                        <ul>
+                            <li><a href="Japanese.php">Japanese</a></li>
+                            <li><a href="Chinese.php">Chinese</a></li>
+                            <li><a href="Korean.php">Korean</a></li>
+                            <?php
+                // Iterate over the fetched course names and display them
+                while ($row = $result->fetch_assoc()) {
+                    echo '<li><a href="admin_newLanguage.php">' . $row['course_name'] . '</a></li>';
+                }
+                ?>
+                        </ul>
+                    </li>
+                    <li><a href="manage_forum.php">Manage Forum</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="admin-actions-column">
+                <a href="add_language.php" class="add-language-btn">Add Language</a>
+            </div>
         </div>
     </div>
+</div>
 
 </body>
 
