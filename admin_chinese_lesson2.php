@@ -118,8 +118,8 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Query the database for Hiragana words
-        $sql = "SELECT vocab, vocab_pronunciation, vocab_meaning FROM chinese_lesson WHERE chinese_id=12";
+        // Query the database 
+        $sql = "SELECT vocab, vocab_pronunciation, vocab_meaning FROM chinese_lesson WHERE chinese_id=1";
         $result = $conn->query($sql);
 
              // Check if records exist
@@ -167,7 +167,7 @@
         }
 
         // Query the database 
-        $sql = "SELECT vocab, vocab_pronunciation, vocab_meaning FROM chinese_lesson WHERE chinese_id IN (13,14)";
+        $sql = "SELECT vocab, vocab_pronunciation, vocab_meaning FROM chinese_lesson WHERE chinese_id IN (2,3)";
         $result = $conn->query($sql);
 
              // Check if records exist
@@ -220,7 +220,7 @@
         }
 
         // Query the database 
-        $sql = "SELECT vocab, vocab_pronunciation, vocab_meaning FROM chinese_lesson WHERE chinese_id>=16";
+        $sql = "SELECT vocab, vocab_pronunciation, vocab_meaning FROM chinese_lesson WHERE chinese_id>=4";
         $result = $conn->query($sql);
 
         // Check if records exist
