@@ -6,19 +6,19 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "language_db";
-
+$language = $_GET['language'];
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 if (!isset($_GET['question'])) {
-    if (isset($_GET['language'])){
-        $language = $_GET['language'];
-    }
-    else {
-        $language = "Japanese";
-    }
+    // if (isset($_GET['language'])){
+    //     $language = $_GET['language'];
+    // }
+    // else {
+    //     $language = "Japanese";
+    // }
     
     // $language = 'Chinese';
     $query = "SELECT * FROM quiz WHERE language = '$language' ORDER BY RAND() LIMIT 5";
@@ -46,15 +46,16 @@ $answer = $row['answer'];
 $questionId = $row['id'];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $user = "Jane";
+    $user = "John";
     if ($_POST['choice'] == $_POST['answer']) {
         $_SESSION['mark'] += 1;
+        echo "Sessio Mark: ".$_SESSION['mark'];
     }
     if ($_POST['currentQuestion'] < 4) {
 
         $currentQuestion = $_POST['currentQuestion'] + 1;
         // echo "Check curr" . $currentQuestion;
-        header("Location: quiz.php?question=$currentQuestion");
+        header("Location: quiz.php?question=$currentQuestion&language=$language");
     } else {
         $mark = $_SESSION['mark'];
         $get_score_sql = "SELECT * FROM quiz_score WHERE user = '$user'";
@@ -92,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt->close();
         }
 
-        header("Location: marks.php?mark=$mark");
+        header("Location: marks.php?mark=$mark&language=$language");
         session_destroy();
     }
 }
@@ -159,6 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="hidden" name="questionId" value="<?php echo $questionId; ?>">
             <input type="hidden" name="currentQuestion" value="<?php echo $currentQuestion ?>">
             <input type="hidden" name="answer" value="<?php echo $answer; ?>">
+            <input type="hidden" name="language" value="<?php echo $language; ?>">
         </form>
     </div>
 </body>

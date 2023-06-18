@@ -1,8 +1,9 @@
 <?php
 include 'nav.php';
 $conn = mysqli_connect('localhost', 'root', '', 'language_db');
-$user = "Jane";
-$language = "Japanese";
+$user = "John";
+// $language = "Japanese";
+$language = $_GET['language'];
 if (isset($_GET['mark'])) {
     $mark = $_GET['mark'];
     $get_score_sql = "SELECT * FROM quiz_score WHERE user = '$user'";
@@ -27,7 +28,7 @@ if (isset($_GET['mark'])) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['quiz'])){
-        header("Location: quiz.php");
+        header("Location: quiz.php?language=$language");
     }
     else if (isset($_POST['lesson'])){
         if ($_POST['language']=="Japanese"){
